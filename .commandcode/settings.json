@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(npx --yes create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias @/* --use-npm --no-git 2 >& 1)",
+      "Shell(npx --yes create-next-app@latest tmp-scaffold --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-git 2>&1 | tail -10 && mv tmp-scaffold/* tmp-scaffold/.* . 2>/dev/null; rm -rf tmp-scaffold && ls -la)",
+      "Shell(node -e console.log(require('next/package.json').version))",
+      "Shell(node --version)",
+      "Shell(npm:*)",
+      "Shell(grep:*)",
+      "Shell(node -p require('./node_modules/lucide-react/package.json').version)",
+      "Shell(npx tsc --noEmit 2 >& 1)",
+      "Shell(sed:*)",
+      "Shell(ls node_modules/@tailwindcss/ 2>&1; echo \"---\"; ls postcss.config.* 2>&1; echo \"---\"; node -p \"require('./node_modules/tailwindcss/package.json').version\" 2>&1; echo \"---\"; git log --oneline -5 2>&1; echo \"---\"; git diff --stat 2>&1 | head -20)",
+      "Shell(ls postcss.config.* 2>/dev/null; ls .next/static/css/ 2>/dev/null; grep -l \"bg-indigo\" .next/static/css/*.css 2>/dev/null | head -3; echo \"---\"; grep -c \"indigo\" .next/static/css/*.css 2>/dev/null | head -5)",
+      "Shell(grep -c \"bg-indigo-600\\|text-slate\\|rounded-xl\" \".next/static/chunks/17gt_5--z8ers.css\" 2>/dev/null; grep -o \"@theme\" \".next/static/chunks/17gt_5--z8ers.css\" | head -2; head -c 500 \".next/static/chunks/17gt_5--z8ers.css\")",
+      "Shell(find:*)",
+      "Shell(ls node_modules/@tailwindcss/turbopack/dist/ 2>/dev/null; cat node_modules/tailwindcss/package.json | grep -A5 '\"exports\"' | head; find / -maxdepth 4 -name \"*.css\" -path \"*tmp-scaffold*\" 2>/dev/null | head; git -C . log --oneline 2>/dev/null | head -3; git status --short 2>/dev/null | head -5)",
+      "Shell(cd /tmp && rm -rf tw-test && npx --yes create-next-app@latest tw-test --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-git >/dev/null 2>&1; grep -A8 '\"turbopack\"' tw-test/next.config.ts; echo \"===CSS===\"; head -20 tw-test/src/app/globals.css)",
+      "Shell(find .next/static -name \"*.css\" -exec ls -la {} \\; ; echo \"===\"; for f in .next/static/css/*.css; do echo \"$f: $(grep -c 'bg-indigo\\|flex\\|grid' $f 2>/dev/null)\"; done)"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}

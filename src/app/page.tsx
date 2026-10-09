@@ -1,69 +1,146 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, Eye, FolderKanban } from "lucide-react";
+import { Hero } from "@/components/home/Hero";
+import { SocialProof } from "@/components/home/SocialProof";
+import { LearningPaths } from "@/components/home/LearningPaths";
+import { WhyCodeCraft } from "@/components/home/WhyCodeCraft";
+import { InteractiveCodeDemo } from "@/components/home/InteractiveCodeDemo";
+import { CTAButton } from "@/components/ui/CTAButton";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { organizationJsonLd, pageMetadata, websiteJsonLd } from "@/lib/seo";
 
-export default function Home() {
+export const metadata: Metadata = pageMetadata({
+  title: "CodeCraft — Learn to Code. Build Real Things. No Setup Required.",
+  description:
+    "Master programming through interactive browser lessons, instant feedback, visual execution tracing, and guided projects built for beginners. Start coding free — no installation.",
+  path: "/",
+  keywords: [
+    "free interactive code editor with live hints",
+    "learn to code online",
+    "python for beginners",
+    "coding for non-tech background",
+  ],
+});
+
+const AUDIENCES = [
+  "Career switchers",
+  "University students",
+  "Complete beginners",
+  "Aspiring founders",
+  "Self-taught developers",
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main>
+      <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+      <Hero />
+      <SocialProof />
+      <LearningPaths />
+      <WhyCodeCraft />
+      <InteractiveCodeDemo />
+
+      <section
+        aria-labelledby="audience-heading"
+        className="border-b border-slate-200 bg-white py-16"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-2">
+            <div>
+              <h2
+                id="audience-heading"
+                className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl"
+              >
+                Made for the best coding pathway for a non-tech background
+              </h2>
+              <p className="mt-4 leading-7 text-slate-600">
+                If you have never written code, struggled with setting up a
+                development environment, or watched tutorials without
+                understanding what the code actually does — CodeCraft was
+                designed for you. Every concept is explained in plain language,
+                every lesson runs in your browser, and every project builds
+                toward something real.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <CTAButton href="/courses" size="lg">
+                  Explore Learning Paths
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </CTAButton>
+                <CTAButton href="/blog" variant="secondary" size="lg">
+                  Read the beginner guides
+                </CTAButton>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                Who CodeCraft is for
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {AUDIENCES.map((a) => (
+                  <li
+                    key={a}
+                    className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-800"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="h-2 w-2 rounded-full bg-indigo-600"
+                    />
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </section>
+
+      <section aria-labelledby="next-heading" className="bg-slate-50 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2
+            id="next-heading"
+            className="text-2xl font-bold tracking-tight text-slate-900"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Keep exploring
+          </h2>
+          <ul className="mt-6 grid gap-6 md:grid-cols-2">
+            <li className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+              <Eye className="h-6 w-6 text-indigo-600" aria-hidden="true" />
+              <h3 className="mt-3 text-lg font-bold text-slate-900">
+                Visualize how loops work in Python, line by line
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Watch variables change as each line executes with the free code
+                visualizer.
+              </p>
+              <Link
+                href="/tools/visualizer"
+                className="mt-4 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-indigo-700 hover:underline"
+              >
+                Open the code visualizer
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </li>
+            <li className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+              <FolderKanban className="h-6 w-6 text-indigo-600" aria-hidden="true" />
+              <h3 className="mt-3 text-lg font-bold text-slate-900">
+                Beginner Python project ideas with guided steps
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Turn lessons into portfolio pieces with step-by-step project
+                guides.
+              </p>
+              <Link
+                href="/projects"
+                className="mt-4 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-indigo-700 hover:underline"
+              >
+                Browse beginner projects
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </li>
+          </ul>
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
