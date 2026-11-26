@@ -1,5 +1,5 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://codecraft.dev";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://codecraft-kohl.vercel.app";
 
 export const SITE_NAME = "CodeCraft";
 export const SITE_TAGLINE = "Learn to code by building.";
